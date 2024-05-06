@@ -78,6 +78,8 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -103,6 +105,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.radioButton2);
             this.tabPage1.Controls.Add(this.radioButton1);
@@ -119,6 +122,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label10);
@@ -216,7 +220,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(630, 47);
+            this.label3.Location = new System.Drawing.Point(541, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(323, 20);
             this.label3.TabIndex = 2;
@@ -251,24 +255,26 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(437, 47);
+            this.textBox1.Location = new System.Drawing.Point(351, 44);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
             this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(462, 48);
+            this.textBox2.Location = new System.Drawing.Point(363, 48);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 26);
             this.textBox2.TabIndex = 11;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton3.Location = new System.Drawing.Point(659, 129);
+            this.radioButton3.Location = new System.Drawing.Point(545, 138);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(216, 24);
             this.radioButton3.TabIndex = 10;
@@ -280,7 +286,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButton4.Location = new System.Drawing.Point(462, 127);
+            this.radioButton4.Location = new System.Drawing.Point(346, 138);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(180, 24);
             this.radioButton4.TabIndex = 9;
@@ -292,7 +298,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(655, 48);
+            this.label4.Location = new System.Drawing.Point(541, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(323, 20);
             this.label4.TabIndex = 8;
@@ -302,7 +308,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(47, 127);
+            this.label5.Location = new System.Drawing.Point(47, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(192, 20);
             this.label5.TabIndex = 7;
@@ -322,7 +328,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(47, 223);
+            this.label7.Location = new System.Drawing.Point(47, 230);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(184, 20);
             this.label7.TabIndex = 12;
@@ -332,7 +338,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(359, 223);
+            this.label8.Location = new System.Drawing.Point(359, 230);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(21, 20);
             this.label8.TabIndex = 13;
@@ -373,6 +379,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 26);
             this.textBox4.TabIndex = 14;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label11
             // 
@@ -426,6 +433,7 @@
             this.label13.Size = new System.Drawing.Size(323, 20);
             this.label13.TabIndex = 17;
             this.label13.Text = "допустимый поворот от 2 до 10 градусов";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label14
             // 
@@ -507,7 +515,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(283, 258);
+            this.label20.Location = new System.Drawing.Point(301, 258);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(21, 20);
             this.label20.TabIndex = 22;
@@ -578,9 +586,9 @@
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.Location = new System.Drawing.Point(48, 672);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(51, 16);
+            this.label26.Size = new System.Drawing.Size(50, 16);
             this.label26.TabIndex = 1;
-            this.label26.Text = "label26";
+            this.label26.Text = "Насос:";
             // 
             // label27
             // 
@@ -588,19 +596,19 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label27.Location = new System.Drawing.Point(384, 672);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(51, 16);
+            this.label27.Size = new System.Drawing.Size(158, 16);
             this.label27.TabIndex = 2;
-            this.label27.Text = "label27";
+            this.label27.Text = "Гидрораспредилитель:";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label28.Location = new System.Drawing.Point(455, 672);
+            this.label28.Location = new System.Drawing.Point(558, 672);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(51, 16);
+            this.label28.Size = new System.Drawing.Size(69, 16);
             this.label28.TabIndex = 3;
-            this.label28.Text = "label28";
+            this.label28.Text = "работает";
             // 
             // label29
             // 
@@ -608,9 +616,9 @@
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label29.Location = new System.Drawing.Point(112, 672);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(51, 16);
+            this.label29.Size = new System.Drawing.Size(69, 16);
             this.label29.TabIndex = 4;
-            this.label29.Text = "label29";
+            this.label29.Text = "работает";
             this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
             // zedGraphControl2
@@ -628,6 +636,28 @@
             this.zedGraphControl2.Size = new System.Drawing.Size(624, 490);
             this.zedGraphControl2.TabIndex = 21;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(35, 225);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(170, 39);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Применить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(51, 434);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 39);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Применить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,7 +669,7 @@
             this.Controls.Add(this.label26);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Параметры для настройки и контроля параметров у стенда ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -707,6 +737,8 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private ZedGraph.ZedGraphControl zedGraphControl2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
