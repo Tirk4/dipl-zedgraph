@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dipl+zedgraph", "dipl+zedgraph\dipl+zedgraph.csproj", "{949C0316-3196-46EE-8CCD-B9F2D792131D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{949C0316-3196-46EE-8CCD-B9F2D792131D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949C0316-3196-46EE-8CCD-B9F2D792131D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949C0316-3196-46EE-8CCD-B9F2D792131D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949C0316-3196-46EE-8CCD-B9F2D792131D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11DF062C-67FE-449E-BDC1-04A9E7E57378}
+	EndGlobalSection
+EndGlobal
