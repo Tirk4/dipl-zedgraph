@@ -13,6 +13,7 @@ namespace dipl_zedgraph
 {
     public partial class Form1 : Form
     {
+        private ManualMotorControl motorControl;
 
         private string RemoveNonDigits(string input)
         {
@@ -35,9 +36,13 @@ namespace dipl_zedgraph
 
         public Form1()
         {
+            motorControl = ManualMotorControl.GetInstance();
             InitializeComponent();
+            label3.Text=motorControl.GetTextAllowedTurnRange();
+
+
             CreateGraph(zedGraphControl1);
-            CreateGraph(zedGraphControl2);
+            CreateGraph(zedGraphControl2);  
         }
 
 
@@ -134,9 +139,9 @@ namespace dipl_zedgraph
             
             if (int.TryParse(textBox1.Text, out int number))
             {
-                if (!(number >= 2 && number <= 10)) // потом заменим
+                if (!(number >= motorControl.GetLeftLimit() && number <= motorControl.GetRightLimit() )) // потом заменим
                 {
-                    MessageBox.Show("Число должно быть в пределах от 2 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Число должно быть в пределах от {motorControl.GetLeftLimit()} до {motorControl.GetRightLimit()}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 
@@ -317,6 +322,6 @@ namespace dipl_zedgraph
 
         }
 
-       
+      
     }
 }
