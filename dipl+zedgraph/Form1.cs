@@ -14,6 +14,7 @@ namespace dipl_zedgraph
     public partial class Form1 : Form
     {
         private ManualMotorControl motorControl;
+        private RollingMechanismManager rollingMechanismManager;
 
         private string RemoveNonDigits(string input)
         {
@@ -21,7 +22,7 @@ namespace dipl_zedgraph
 
             foreach (char c in input)
             {
-                if (char.IsDigit(c))
+                if (char.IsDigit(c) || c==',')
                 {
                     result += c;
                 }
@@ -37,9 +38,15 @@ namespace dipl_zedgraph
         public Form1()
         {
             motorControl = ManualMotorControl.GetInstance();
+            rollingMechanismManager = RollingMechanismManager.GetInstance();
             InitializeComponent();
             label3.Text=motorControl.GetTextAllowedTurnRange();
-
+            /////
+            label4.Text =rollingMechanismManager.GetTextAllowedSpeedLimit();
+            label8.Text = rollingMechanismManager.GetTextTurnLengthLimit();
+            label9.Text = rollingMechanismManager.GetTextRollingTimeLimit();
+            /////
+            
 
             CreateGraph(zedGraphControl1);
             CreateGraph(zedGraphControl2);  
@@ -139,7 +146,7 @@ namespace dipl_zedgraph
             
             if (int.TryParse(textBox1.Text, out int number))
             {
-                if (!(number >= motorControl.GetLeftLimit() && number <= motorControl.GetRightLimit() )) // потом заменим
+                if (!(number >= motorControl.GetLeftLimit() && number <= motorControl.GetRightLimit() ))
                 {
                     MessageBox.Show($"Число должно быть в пределах от {motorControl.GetLeftLimit()} до {motorControl.GetRightLimit()}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -176,18 +183,29 @@ namespace dipl_zedgraph
             }
 
 
-            if (!(int.Parse(textBox2.Text) >= 2 && int.Parse(textBox2.Text)<=10) )
+            if (!(double.Parse(textBox2.Text) >= RollingMechanismManager.GetInstance().LeftSpeedLimit && double.Parse(textBox2.Text)<= RollingMechanismManager.GetInstance().RightSpeedLimit) )
             {
-                MessageBox.Show("Число должно быть в пределах от 2 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Число должно быть в пределах от {RollingMechanismManager.GetInstance().LeftSpeedLimit} до {RollingMechanismManager.GetInstance().RightSpeedLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!(int.Parse(textBox2.Text) >= 2 && int.Parse(textBox2.Text) <= 1000))
+            if (!(double.Parse(textBox3.Text) >= RollingMechanismManager.GetInstance().LeftRollingTimeLimit && double.Parse(textBox3.Text) <= RollingMechanismManager.GetInstance().RightRollingTimeLimit))
             {
-                MessageBox.Show("Число должно быть в пределах от 2 до 1000", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Число должно быть в пределах от {RollingMechanismManager.GetInstance().LeftRollingTimeLimit} до {RollingMechanismManager.GetInstance().RightRollingTimeLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!(double.Parse(textBox9.Text) >= RollingMechanismManager.GetInstance().LeftTurnLengthLimit && double.Parse(textBox9.Text) <= RollingMechanismManager.GetInstance().RightTurnLengthLimit))
+            {
+                MessageBox.Show($"Число должно быть в пределах от {RollingMechanismManager.GetInstance().LeftTurnLengthLimit} до {RollingMechanismManager.GetInstance().RightTurnLengthLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            RollingMechanismManager.GetInstance().NumberOfRotations = double.Parse(textBox2.Text);
+            RollingMechanismManager.GetInstance().TimeOfRolling = double.Parse(textBox3.Text);
+            RollingMechanismManager.GetInstance().NumberOfRotations = double.Parse(textBox9.Text);
 
 
+
+
+            label31.Text = RollingMechanismManager.GetInstance().CountLength(RollingMechanismManager.GetInstance().NumberOfRotations, RollingMechanismManager.GetInstance().KPF).ToString();
             MessageBox.Show("Механизм запущен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         //////////////////////////////
@@ -322,6 +340,10 @@ namespace dipl_zedgraph
 
         }
 
-      
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            textBox9.Text = RemoveNonDigits(textBox9.Text);
+            textBox9.SelectionStart = textBox9.Text.Length;
+        }
     }
 }

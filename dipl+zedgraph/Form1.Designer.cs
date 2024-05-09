@@ -274,9 +274,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(47, 230);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(184, 20);
+            this.label7.Size = new System.Drawing.Size(228, 20);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Длина хода механизма";
+            this.label7.Text = "Число поворотов двигателя";
             // 
             // textBox2
             // 
@@ -339,9 +339,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(47, 48);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(284, 20);
+            this.label6.Size = new System.Drawing.Size(247, 20);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Разовый угол поворота двигателем";
+            this.label6.Text = "Скорость вращения двигателя";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // tabPage3
@@ -710,6 +710,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(100, 26);
             this.textBox9.TabIndex = 18;
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label8
             // 

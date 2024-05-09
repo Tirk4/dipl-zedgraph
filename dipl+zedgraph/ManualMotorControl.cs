@@ -10,6 +10,7 @@ namespace dipl_zedgraph
     internal class ManualMotorControl
     {
         private static ManualMotorControl instance;
+
         private int leftLimit = 1;
         private int rightLimit = 11;
         private string text = "Допустимый поворот от %LEFT% до %RIGHT% градусов";
