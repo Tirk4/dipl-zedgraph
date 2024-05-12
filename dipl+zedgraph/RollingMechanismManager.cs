@@ -22,8 +22,8 @@ namespace dipl_zedgraph
         public double RightRollingTimeLimit=1000.0;
         public string TextRollingTimeLimit = "допустимое время прикатки от %LEFT% до %RIGHT%";
 
-        public double LeftTurnLengthLimit=2.0;
-        public double RightTurnLengthLimit=10.0;
+        public double LeftNumberOfRotationsLimit=2.0;
+        public double RightNumberOfRotationsLimit=10.0;
         public string TextTurnLengthLimit = "допустимая длина механизма от %LEFT% до %RIGHT%";
 
         public static RollingMechanismManager GetInstance()
@@ -48,7 +48,7 @@ namespace dipl_zedgraph
         }
         public string GetTextTurnLengthLimit()
         {
-            return TextTurnLengthLimit.Replace("%LEFT%", LeftRollingTimeLimit.ToString()).Replace("%RIGHT%", RightRollingTimeLimit.ToString());
+            return TextTurnLengthLimit.Replace("%LEFT%", LeftNumberOfRotationsLimit.ToString()).Replace("%RIGHT%",RightNumberOfRotationsLimit.ToString());
         }
         public double CountLength(double n, double KPF)
         {

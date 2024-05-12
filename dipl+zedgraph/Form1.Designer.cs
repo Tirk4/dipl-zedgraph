@@ -39,6 +39,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -82,10 +86,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -124,6 +125,7 @@
             this.tabPage1.Size = new System.Drawing.Size(1514, 581);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Режим ручного управления двигателем";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button1
             // 
@@ -227,6 +229,45 @@
             this.tabPage2.Size = new System.Drawing.Size(1514, 581);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Режим прикатки механизма";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label31.Location = new System.Drawing.Point(310, 441);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(21, 20);
+            this.label31.TabIndex = 21;
+            this.label31.Text = "...";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label30.Location = new System.Drawing.Point(47, 441);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(184, 20);
+            this.label30.TabIndex = 20;
+            this.label30.Text = "Длина хода механизма";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(541, 233);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(203, 20);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "в количествах поворотов";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox9.Location = new System.Drawing.Point(363, 227);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 26);
+            this.textBox9.TabIndex = 18;
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // button2
             // 
@@ -406,7 +447,7 @@
             // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(957, 111);
+            this.zedGraphControl1.Location = new System.Drawing.Point(977, 125);
             this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
@@ -416,7 +457,7 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(513, 450);
+            this.zedGraphControl1.Size = new System.Drawing.Size(503, 438);
             this.zedGraphControl1.TabIndex = 15;
             this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
             // 
@@ -452,6 +493,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage4.Controls.Add(this.label32);
             this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.label20);
             this.tabPage4.Controls.Add(this.label19);
@@ -467,6 +509,7 @@
             this.tabPage4.Size = new System.Drawing.Size(1514, 581);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Режим измерения параметров. Мервтый ход";
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // button4
             // 
@@ -703,44 +746,15 @@
             this.label29.Text = "работает";
             this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
-            // textBox9
+            // label32
             // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox9.Location = new System.Drawing.Point(363, 227);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 26);
-            this.textBox9.TabIndex = 18;
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(541, 233);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(203, 20);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "в количествах поворотов";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label30.Location = new System.Drawing.Point(47, 441);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(184, 20);
-            this.label30.TabIndex = 20;
-            this.label30.Text = "Длина хода механизма";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label31.Location = new System.Drawing.Point(310, 441);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(21, 20);
-            this.label31.TabIndex = 21;
-            this.label31.Text = "...";
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label32.Location = new System.Drawing.Point(438, 258);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(78, 20);
+            this.label32.TabIndex = 24;
+            this.label32.Text = "градусов";
             // 
             // Form1
             // 
@@ -829,6 +843,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label32;
     }
 }
 

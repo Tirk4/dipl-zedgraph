@@ -11,8 +11,9 @@ namespace dipl_zedgraph
     {
         private static ManualMotorControl instance;
 
-        private int leftLimit = 1;
-        private int rightLimit = 11;
+        private double leftLimit = 2;
+        private double rightLimit = 10;
+        public double rotationSpeed;
         private string text = "Допустимый поворот от %LEFT% до %RIGHT% градусов";
         public static ManualMotorControl GetInstance()
         {
@@ -22,12 +23,12 @@ namespace dipl_zedgraph
             }
             return instance;
         }
-        public int GetLeftLimit()
+        public double GetLeftLimit()
         {
             return leftLimit;
         }
 
-        public int GetRightLimit()
+        public double GetRightLimit()
         {
             return rightLimit;
         }
