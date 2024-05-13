@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeadlockMeasurement.cs" />
+    <Compile Include="EfficiencyMechanism.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

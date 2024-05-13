@@ -63,7 +63,7 @@ namespace dipl_zedgraph
             
         }
 
-        private void CreateGraph(ZedGraphControl zgc)
+        private void CreateGraph1(ZedGraphControl zgc)
         {
             zgc.GraphPane.CurveList.Clear();
 
@@ -79,6 +79,24 @@ namespace dipl_zedgraph
             zgc.AxisChange();
             zgc.Invalidate();
         }
+
+        private void CreateGraph2(ZedGraphControl zgc)
+        {
+            zgc.GraphPane.CurveList.Clear();
+
+            PointPairList points = new PointPairList();
+
+            for (int i = 0; i < EfficiencyMechanism.GetInstance().dynamicArray1.Count; i++)
+            {
+                points.Add(EfficiencyMechanism.GetInstance().dynamicArray1[i], EfficiencyMechanism.GetInstance().dynamicArray2[i]);
+            }
+
+            LineItem curve = zgc.GraphPane.AddCurve("График", points, Color.Blue, SymbolType.None);
+
+            zgc.AxisChange();
+            zgc.Invalidate();
+        }
+
 
 
         private void tabPage3_Click(object sender, EventArgs e)
@@ -245,7 +263,7 @@ namespace dipl_zedgraph
 
             KinematicAccuracy.GetInstance().MakeGetExperimentalData();
             KinematicAccuracy.GetInstance().WriteDataToTextFile("experiment_data.txt");
-            CreateGraph(zedGraphControl1);
+            CreateGraph1(zedGraphControl1);
 
             MessageBox.Show("Механизм запущен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -291,11 +309,17 @@ namespace dipl_zedgraph
                 return;
             }
 
-            if (!(int.Parse(textBox8.Text) >= 2 && int.Parse(textBox8.Text) <= 10))
+            if (!(int.Parse(textBox8.Text) >= EfficiencyMechanism.GetInstance().leftBoundary && int.Parse(textBox8.Text) <= EfficiencyMechanism.GetInstance().rightBoundary))
             {
-                MessageBox.Show("Число должно быть в пределах от 2 до 10", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Число должно быть в пределах от {EfficiencyMechanism.GetInstance().leftBoundary} до {EfficiencyMechanism.GetInstance().rightBoundary}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            EfficiencyMechanism.GetInstance().axialLoad= double.Parse(textBox8.Text);
+
+            EfficiencyMechanism.GetInstance().makeExperimentalData();
+            EfficiencyMechanism.GetInstance().WriteDataToTextFile("experiment_data2.txt");
+            CreateGraph2(zedGraphControl2);
+
         }
 
         //////////////////////////////
