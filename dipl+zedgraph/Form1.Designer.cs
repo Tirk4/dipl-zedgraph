@@ -55,6 +55,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -106,7 +112,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1522, 610);
+            this.tabControl1.Size = new System.Drawing.Size(1531, 697);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -124,7 +130,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1514, 581);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Режим ручного управления двигателем";
+            this.tabPage1.Text = "Ручное управления двигателем";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button1
@@ -200,9 +206,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(22, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 20);
+            this.label1.Size = new System.Drawing.Size(273, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Скорость вращения двигателя";
+            this.label1.Text = "Разовый угол поворота двигателя";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tabPage2
@@ -228,7 +234,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1514, 581);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Режим прикатки механизма";
+            this.tabPage2.Text = "Прикатка механизма";
             // 
             // label31
             // 
@@ -388,6 +394,12 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.label34);
+            this.tabPage3.Controls.Add(this.textBox10);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.richTextBox1);
+            this.tabPage3.Controls.Add(this.button6);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.textBox5);
             this.tabPage3.Controls.Add(this.label13);
@@ -399,15 +411,74 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1514, 581);
+            this.tabPage3.Size = new System.Drawing.Size(1523, 668);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Режим измерения параметров.  Кинематическая погрешность";
+            this.tabPage3.Text = "Измерение кинематической погрешности";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label35.Location = new System.Drawing.Point(569, 370);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(295, 20);
+            this.label35.TabIndex = 25;
+            this.label35.Text = "Допустимое измерение от 10 до 1000";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label34.Location = new System.Drawing.Point(569, 272);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(355, 20);
+            this.label34.TabIndex = 24;
+            this.label34.Text = "Количество измерений на заданных участках";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox10.Location = new System.Drawing.Point(573, 313);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 26);
+            this.textBox10.TabIndex = 23;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label33.Location = new System.Drawing.Point(22, 233);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(474, 80);
+            this.label33.TabIndex = 22;
+            this.label33.Text = "Введите длину участков через пропуск строки для проверки\r\nНапример \r\n12-15\r\n16-23" +
+    "";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(35, 341);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(146, 232);
+            this.richTextBox1.TabIndex = 21;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.Location = new System.Drawing.Point(26, 600);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(170, 39);
+            this.button6.TabIndex = 20;
+            this.button6.Text = "Применить";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(35, 238);
+            this.button3.Location = new System.Drawing.Point(35, 179);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 39);
             this.button3.TabIndex = 19;
@@ -418,7 +489,7 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox5.Location = new System.Drawing.Point(464, 142);
+            this.textBox5.Location = new System.Drawing.Point(464, 105);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 26);
             this.textBox5.TabIndex = 18;
@@ -428,7 +499,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(601, 148);
+            this.label13.Location = new System.Drawing.Point(601, 111);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(323, 20);
             this.label13.TabIndex = 17;
@@ -439,7 +510,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(31, 148);
+            this.label14.Location = new System.Drawing.Point(31, 111);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(411, 20);
             this.label14.TabIndex = 16;
@@ -447,7 +518,7 @@
             // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(977, 125);
+            this.zedGraphControl1.Location = new System.Drawing.Point(977, 126);
             this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
@@ -459,12 +530,11 @@
             this.zedGraphControl1.ScrollMinY2 = 0D;
             this.zedGraphControl1.Size = new System.Drawing.Size(503, 438);
             this.zedGraphControl1.TabIndex = 15;
-            this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(661, 54);
+            this.textBox4.Location = new System.Drawing.Point(661, 27);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 26);
             this.textBox4.TabIndex = 14;
@@ -474,7 +544,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(792, 60);
+            this.label11.Location = new System.Drawing.Point(792, 33);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(323, 20);
             this.label11.TabIndex = 13;
@@ -484,7 +554,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(31, 57);
+            this.label12.Location = new System.Drawing.Point(31, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(586, 20);
             this.label12.TabIndex = 12;
@@ -508,7 +578,7 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(1514, 581);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Режим измерения параметров. Мервтый ход";
+            this.tabPage4.Text = "Измерение мёрвтого хода";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // label32
@@ -625,9 +695,9 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1514, 581);
+            this.tabPage5.Size = new System.Drawing.Size(1523, 626);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Режим измерения параметров. КПД механизма";
+            this.tabPage5.Text = "Измерение КПД механизмов";
             // 
             // button5
             // 
@@ -642,7 +712,7 @@
             // 
             // zedGraphControl2
             // 
-            this.zedGraphControl2.Location = new System.Drawing.Point(820, 91);
+            this.zedGraphControl2.Location = new System.Drawing.Point(974, 121);
             this.zedGraphControl2.Margin = new System.Windows.Forms.Padding(4);
             this.zedGraphControl2.Name = "zedGraphControl2";
             this.zedGraphControl2.ScrollGrace = 0D;
@@ -652,7 +722,7 @@
             this.zedGraphControl2.ScrollMinX = 0D;
             this.zedGraphControl2.ScrollMinY = 0D;
             this.zedGraphControl2.ScrollMinY2 = 0D;
-            this.zedGraphControl2.Size = new System.Drawing.Size(624, 490);
+            this.zedGraphControl2.Size = new System.Drawing.Size(506, 437);
             this.zedGraphControl2.TabIndex = 21;
             this.zedGraphControl2.Load += new System.EventHandler(this.zedGraphControl2_Load);
             // 
@@ -719,7 +789,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label26.Location = new System.Drawing.Point(48, 672);
+            this.label26.Location = new System.Drawing.Point(31, 790);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(50, 16);
             this.label26.TabIndex = 1;
@@ -729,7 +799,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label27.Location = new System.Drawing.Point(384, 672);
+            this.label27.Location = new System.Drawing.Point(367, 790);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(158, 16);
             this.label27.TabIndex = 2;
@@ -739,7 +809,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label28.Location = new System.Drawing.Point(558, 672);
+            this.label28.Location = new System.Drawing.Point(541, 790);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(69, 16);
             this.label28.TabIndex = 3;
@@ -749,7 +819,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label29.Location = new System.Drawing.Point(112, 672);
+            this.label29.Location = new System.Drawing.Point(95, 790);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(69, 16);
             this.label29.TabIndex = 4;
@@ -760,7 +830,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1541, 694);
+            this.ClientSize = new System.Drawing.Size(1555, 857);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
@@ -844,6 +914,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace dipl_zedgraph
         private ManualMotorControl motorControl;
         private RollingMechanismManager rollingMechanismManager;
         private DeadlockMeasurement deadlockMeasurement;
+        private DataReceiver dataReceiver;
 
         private string RemoveNonDigits(string input)
         {
@@ -23,7 +25,7 @@ namespace dipl_zedgraph
 
             foreach (char c in input)
             {
-                if (char.IsDigit(c) || c==',')
+                if (char.IsDigit(c) || c == ',')
                 {
                     result += c;
                 }
@@ -41,16 +43,18 @@ namespace dipl_zedgraph
             motorControl = ManualMotorControl.GetInstance();
             rollingMechanismManager = RollingMechanismManager.GetInstance();
             deadlockMeasurement = DeadlockMeasurement.GetInstance();
+            dataReceiver = new DataReceiver();
             InitializeComponent();
-            label3.Text=motorControl.GetTextAllowedTurnRange();
+            dataReceiver.StartReceivingData();
+            label3.Text = motorControl.GetTextAllowedTurnRange();
             /////
-            label4.Text =rollingMechanismManager.GetTextAllowedSpeedLimit();
+            label4.Text = rollingMechanismManager.GetTextAllowedSpeedLimit();
             label8.Text = rollingMechanismManager.GetTextTurnLengthLimit();
             label9.Text = rollingMechanismManager.GetTextRollingTimeLimit();
             /////
             label11.Text = KinematicAccuracy.GetInstance().GetTextSectionLength();
             label13.Text = KinematicAccuracy.GetInstance().GetTextNumberOfMeasurments();
-           
+
             /////
             label15.Text = deadlockMeasurement.GetTextClockWiseRotationLimit();
             label17.Text = deadlockMeasurement.GetTextCounterClockWiseRotationLimit();
@@ -60,7 +64,13 @@ namespace dipl_zedgraph
 
 
 
-            
+
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            dataReceiver.StopReceivingData();
         }
 
         private void CreateGraph1(ZedGraphControl zgc)
@@ -73,11 +83,22 @@ namespace dipl_zedgraph
             {
                 points.Add(KinematicAccuracy.GetInstance().dynamicArray1[i], KinematicAccuracy.GetInstance().dynamicArray2[i]);
             }
-           
+
             LineItem curve = zgc.GraphPane.AddCurve("График", points, Color.Blue, SymbolType.None);
 
             zgc.AxisChange();
             zgc.Invalidate();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Graph1.png");
+            SaveGraphToFile(zgc, filePath);
+        }
+
+        private void SaveGraphToFile(ZedGraphControl zgc, string filePath)
+        {
+            using (Bitmap bmp = new Bitmap(zgc.Width, zgc.Height))
+            {
+                zgc.DrawToBitmap(bmp, new Rectangle(0, 0, zgc.Width, zgc.Height));
+                bmp.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+            }
         }
 
         private void CreateGraph2(ZedGraphControl zgc)
@@ -95,7 +116,10 @@ namespace dipl_zedgraph
 
             zgc.AxisChange();
             zgc.Invalidate();
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Graph2.png");
+            SaveGraphToFile(zgc, filePath);
         }
+    
 
 
 
@@ -159,28 +183,28 @@ namespace dipl_zedgraph
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             if (textBox1.Text == "")
             {
                 MessageBox.Show("Введите скорость вращения двигателя", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             if (double.TryParse(textBox1.Text, out double number))
             {
-                if (!(number >= motorControl.GetLeftLimit() && number <= motorControl.GetRightLimit() ))
+                if (!(number >= motorControl.GetLeftLimit() && number <= motorControl.GetRightLimit()))
                 {
                     MessageBox.Show($"Число должно быть в пределах от {motorControl.GetLeftLimit()} до {motorControl.GetRightLimit()}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
             }
-           
+
             if (!radioButton1.Checked && !radioButton2.Checked)
             {
-                
+
                 MessageBox.Show("Выберите направление вращения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
             ManualMotorControl.GetInstance().rotationSpeed = double.Parse(textBox1.Text);
             MessageBox.Show("Механизм запущен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -206,7 +230,7 @@ namespace dipl_zedgraph
             }
 
 
-            if (!(double.Parse(textBox2.Text) >= RollingMechanismManager.GetInstance().LeftSpeedLimit && double.Parse(textBox2.Text)<= RollingMechanismManager.GetInstance().RightSpeedLimit) )
+            if (!(double.Parse(textBox2.Text) >= RollingMechanismManager.GetInstance().LeftSpeedLimit && double.Parse(textBox2.Text) <= RollingMechanismManager.GetInstance().RightSpeedLimit))
             {
                 MessageBox.Show($"Число должно быть в пределах от {RollingMechanismManager.GetInstance().LeftSpeedLimit} до {RollingMechanismManager.GetInstance().RightSpeedLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -248,7 +272,7 @@ namespace dipl_zedgraph
                 return;
             }
 
-            if(double.Parse(textBox5.Text) != Math.Floor(double.Parse(textBox5.Text)))
+            if (double.Parse(textBox5.Text) != Math.Floor(double.Parse(textBox5.Text)))
             {
                 MessageBox.Show("Число должно быть целым", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -258,7 +282,7 @@ namespace dipl_zedgraph
                 MessageBox.Show($"Число должно быть в пределах от {KinematicAccuracy.GetInstance().numberOfMeasurementsLeftLimit} до {KinematicAccuracy.GetInstance().numberOfMeasurementsRightLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            KinematicAccuracy.GetInstance().sectionLength= double.Parse(textBox4.Text);
+            KinematicAccuracy.GetInstance().sectionLength = double.Parse(textBox4.Text);
             KinematicAccuracy.GetInstance().numberOfMeasurements = int.Parse(textBox5.Text);
 
             KinematicAccuracy.GetInstance().MakeGetExperimentalData();
@@ -291,7 +315,7 @@ namespace dipl_zedgraph
                 MessageBox.Show($"Число должно быть в пределах от {DeadlockMeasurement.GetInstance().counterClockWiseLeftBoundaryValue} до {DeadlockMeasurement.GetInstance().counterClockWiseRightBoundaryValue}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             DeadlockMeasurement.GetInstance().clockWiseRotationValue = double.Parse(textBox6.Text);
             DeadlockMeasurement.GetInstance().counterClockWiseRotationValue = double.Parse(textBox7.Text);
             label20.Text = DeadlockMeasurement.GetInstance().GetExperimentalRotationValue().ToString();
@@ -314,7 +338,7 @@ namespace dipl_zedgraph
                 MessageBox.Show($"Число должно быть в пределах от {EfficiencyMechanism.GetInstance().leftBoundary} до {EfficiencyMechanism.GetInstance().rightBoundary}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            EfficiencyMechanism.GetInstance().axialLoad= double.Parse(textBox8.Text);
+            EfficiencyMechanism.GetInstance().axialLoad = double.Parse(textBox8.Text);
 
             EfficiencyMechanism.GetInstance().makeExperimentalData();
             EfficiencyMechanism.GetInstance().WriteDataToTextFile("experiment_data2.txt");
@@ -353,10 +377,7 @@ namespace dipl_zedgraph
             textBox7.SelectionStart = textBox7.Text.Length;
         }
 
-        private void zedGraphControl1_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void zedGraphControl2_Load(object sender, EventArgs e)
         {
@@ -392,5 +413,106 @@ namespace dipl_zedgraph
         {
 
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = richTextBox1.Text;
+            StringBuilder filteredText = new StringBuilder();
+
+            foreach (char c in currentText)
+            {
+                if (char.IsDigit(c) || c == '-' || c == '\n' || c == ',')
+                {
+                    filteredText.Append(c);
+                }
+                else System.Media.SystemSounds.Beep.Play();
+            }
+
+            richTextBox1.Text = filteredText.ToString();
+
+            richTextBox1.SelectionStart = richTextBox1.Text.Length;
+            richTextBox1.ScrollToCaret();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+
+            if (richTextBox1.Text == "")
+            {
+                MessageBox.Show("Введите значение для длины", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBox10.Text == "")
+            {
+                MessageBox.Show("Введите значение для числа измерений", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (double.Parse(textBox10.Text) != Math.Floor(double.Parse(textBox10.Text)))
+            {
+                MessageBox.Show("Число должно быть целым", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ////////////////!
+            if (!(double.Parse(textBox10.Text) >= KinematicAccuracy.GetInstance().sectionLengthLeftLimit && double.Parse(textBox10.Text) <= KinematicAccuracy.GetInstance().sectionLengthRightLimit))
+            {
+                MessageBox.Show($"Число должно быть в пределах от {KinematicAccuracy.GetInstance().sectionLengthLeftLimit} до {KinematicAccuracy.GetInstance().sectionLengthRightLimit}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string value = richTextBox1.Text;
+            string[] lines = value.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            double[,] array = new double[lines.Length, 2];
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] parts = lines[i].Split('-');
+                if (parts.Length == 2)
+                {
+                    double firstNumber, secondNumber;
+                    if (double.TryParse(parts[0], out firstNumber) && double.TryParse(parts[1], out secondNumber))
+                    {
+                        array[i, 0] = firstNumber;
+                        array[i, 1] = secondNumber;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ошибка преобразования в строке {i + 1}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Ошибка в строке {i + 1}: строка должна содержать два числа, разделенных '-'", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            KinematicAccuracy.GetInstance().numberOfMeasurements = int.Parse(textBox10.Text);
+            KinematicAccuracy.GetInstance().array = array;
+
+            double totalLength = 0;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (array[i, 1] - array[i, 0] < 0)
+                {
+                    MessageBox.Show($"Ошибка. Правый предел меньше левого", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                totalLength += array[i, 1] - array[i, 0];
+            }
+            //////////////////////////
+            using (StreamWriter writer = new StreamWriter("experiments1-2.txt"))
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    for (double j = array[i, 0]; j < array[i, 1]; j += totalLength / KinematicAccuracy.GetInstance().numberOfMeasurements)
+                    {
+                        writer.WriteLine($"{j} {KinematicAccuracy.GetInstance().GetRandomNumber()}");
+                    }
+                }
+            MessageBox.Show("Механизм запущен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+        }
+
     }
 }

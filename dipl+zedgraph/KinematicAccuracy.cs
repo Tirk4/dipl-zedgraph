@@ -28,6 +28,9 @@ namespace dipl_zedgraph
         public List<double> dynamicArray1 = new List<double>();
         public List<double> dynamicArray2 = new List<double>();
 
+        public double[,] array;
+        public int numberOfMeasurementsForArray;
+
         public static KinematicAccuracy GetInstance()
         {
             if (instance == null)
@@ -51,8 +54,8 @@ namespace dipl_zedgraph
 
         public double CalculateExperimentallNutPosition(double theoretic)
         {
-
-            return theoretic *(new Random().NextDouble() * 0.4 + 0.8);
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+            return theoretic *(random.NextDouble() * 0.4 + 0.8);
         }
 
 
@@ -88,7 +91,11 @@ namespace dipl_zedgraph
                 MessageBox.Show($"Ошибка при записи данных в файл: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        public double GetRandomNumber()
+        {
+            Random rnd = new Random();
+            return rnd.NextDouble() * 100;
+        }
 
 
 

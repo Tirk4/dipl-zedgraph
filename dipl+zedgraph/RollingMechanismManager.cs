@@ -18,13 +18,13 @@ namespace dipl_zedgraph
         public double KPF=1;
         public double TimeOfRolling;
 
-        public double LeftRollingTimeLimit=1.0;
+        public double LeftRollingTimeLimit=1.5;
         public double RightRollingTimeLimit=1000.0;
-        public string TextRollingTimeLimit = "допустимое время прикатки от %LEFT% до %RIGHT%";
+        public string TextRollingTimeLimit = "допустимое время прикатки от %LEFT% до %RIGHT% часов";
 
         public double LeftNumberOfRotationsLimit=2.0;
         public double RightNumberOfRotationsLimit=10.0;
-        public string TextTurnLengthLimit = "допустимая длина механизма от %LEFT% до %RIGHT%";
+        public string TextTurnLengthLimit = "допустимая длина поворота механизма от %LEFT% до %RIGHT% см";
 
         public static RollingMechanismManager GetInstance()
         {
